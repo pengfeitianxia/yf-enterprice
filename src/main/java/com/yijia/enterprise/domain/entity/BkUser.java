@@ -10,13 +10,20 @@ import lombok.ToString;
 @Getter
 @Setter
 @ToString
-@Table(name = "set_consumption_amount_history")
-public class SetConsumptionAmountHistory {
+@Table(name = "bk_user")
+public class BkUser {
     @Id
-    private String id;
+    @Column(name = "bk_user_id")
+    private String bkUserId;
 
-    @Column(name = "set_amount")
-    private BigDecimal setAmount;
+    private String name;
+
+    private String phone;
+
+    private BigDecimal deposit;
+
+    @Column(name = "update_time")
+    private Date updateTime;
 
     @Column(name = "create_time")
     private Date createTime;

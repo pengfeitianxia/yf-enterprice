@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.yijia.enterprise.dao.BkBookInfoMapper">
+  <resultMap id="BaseResultMap" type="com.yijia.enterprise.domain.entity.BkBookInfo">
+    <!--
+      WARNING - @mbg.generated
+    -->
+    <id column="book_id" jdbcType="VARCHAR" property="bookId" />
+    <result column="book_name" jdbcType="VARCHAR" property="bookName" />
+    <result column="purchase_price" jdbcType="DECIMAL" property="purchasePrice" />
+    <result column="price" jdbcType="DECIMAL" property="price" />
+    <result column="state" jdbcType="CHAR" property="state" />
+    <result column="modify_time" jdbcType="TIMESTAMP" property="modifyTime" />
+    <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+  </resultMap>
+</mapper>

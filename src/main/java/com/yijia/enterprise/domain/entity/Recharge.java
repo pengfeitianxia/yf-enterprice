@@ -3,13 +3,13 @@ package com.yijia.enterprise.domain.entity;
 import java.math.BigDecimal;
 import java.util.Date;
 import javax.persistence.*;
+import lombok.Getter;
+import lombok.Setter;
+import lombok.ToString;
 
-import lombok.*;
-
-@Data
-@Builder
-@NoArgsConstructor
-@AllArgsConstructor
+@Getter
+@Setter
+@ToString
 @Table(name = "recharge")
 public class Recharge {
     @Id

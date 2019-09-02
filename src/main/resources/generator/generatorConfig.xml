@@ -35,8 +35,10 @@
                              type="XMLMAPPER"/>
 
         <!--为哪张表生成代码-->
-        <table tableName="book"></table>
-        <table tableName="book_history"></table>
+        <table tableName="bk_book_info"></table>
+        <table tableName="bk_book_info_history"></table>
+        <table tableName="bk_userandbook"></table>
+        <table tableName="bk_user"></table>
         <table tableName="consumption_record"></table>
         <table tableName="recharge"></table>
         <table tableName="set_consumption_amount"></table>
