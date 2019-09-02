@@ -10,16 +10,16 @@ Target Server Type    : MYSQL
 Target Server Version : 50616
 File Encoding         : 65001
 
-Date: 2019-09-02 22:31:06
+Date: 2019-09-03 00:46:31
 */
 
 SET FOREIGN_KEY_CHECKS=0;
 
 -- ----------------------------
--- Table structure for bk_book
+-- Table structure for bk_book_info
 -- ----------------------------
-DROP TABLE IF EXISTS `bk_book`;
-CREATE TABLE `bk_book` (
+DROP TABLE IF EXISTS `bk_book_info`;
+CREATE TABLE `bk_book_info` (
   `book_id` varchar(32) NOT NULL,
   `book_name` varchar(50) NOT NULL,
   `purchase_price` decimal(18,2) NOT NULL,
@@ -31,11 +31,11 @@ CREATE TABLE `bk_book` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- ----------------------------
--- Table structure for bk_book_history
+-- Table structure for bk_book_info_history
 -- ----------------------------
-DROP TABLE IF EXISTS `bk_book_history`;
-CREATE TABLE `bk_book_history` (
-  `id` varchar(32) NOT NULL,
+DROP TABLE IF EXISTS `bk_book_info_history`;
+CREATE TABLE `bk_book_info_history` (
+  `book_id` varchar(32) NOT NULL,
   `book_name` varchar(50) NOT NULL,
   `purchase_price` decimal(18,2) NOT NULL,
   `price` decimal(18,2) NOT NULL,
@@ -43,7 +43,7 @@ CREATE TABLE `bk_book_history` (
   `modify_time` datetime DEFAULT NULL,
   `operater` varchar(10) NOT NULL,
   `create_time` datetime NOT NULL,
-  PRIMARY KEY (`id`)
+  PRIMARY KEY (`book_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- ----------------------------
@@ -53,6 +53,7 @@ DROP TABLE IF EXISTS `bk_user`;
 CREATE TABLE `bk_user` (
   `bk_user_id` varchar(32) COLLATE utf8_bin NOT NULL,
   `name` varchar(50) COLLATE utf8_bin NOT NULL,
+  `phone` varchar(11) COLLATE utf8_bin DEFAULT NULL,
   `deposit` decimal(18,2) NOT NULL,
   `update_time` datetime DEFAULT NULL,
   `create_time` datetime NOT NULL,
