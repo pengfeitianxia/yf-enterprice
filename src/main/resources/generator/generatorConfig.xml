@@ -15,10 +15,10 @@
             <property name="lombok" value="Getter,Setter,ToString"/>
         </plugin>
 
-        <jdbcConnection driverClass="${jdbc.driverClass}"
-                        connectionURL="${jdbc.url}"
-                        userId="${jdbc.user}"
-                        password="${jdbc.password}">
+        <jdbcConnection driverClass="com.mysql.jdbc.Driver"
+                        connectionURL="jdbc:mysql://127.0.0.1:3306/yf_enterprise?serverTimezone=GMT"
+                        userId="root"
+                        password="root">
         </jdbcConnection>
 
         <!--实体-->
@@ -39,10 +39,10 @@
         <table tableName="bk_book_info_history"></table>
         <table tableName="bk_userandbook"></table>
         <table tableName="bk_user"></table>
-        <table tableName="consumption_record"></table>
-        <table tableName="recharge"></table>
-        <table tableName="set_consumption_amount"></table>
-        <table tableName="set_consumption_amount_history"></table>
-        <table tableName="user"></table>
+        <table tableName="p_consumption_record"></table>
+        <table tableName="p_recharge"></table>
+        <table tableName="p_set_consumption_amount"></table>
+        <table tableName="p_set_consumption_amount_history"></table>
+        <table tableName="p_user"></table>
     </context>
 </generatorConfiguration>

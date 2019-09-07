@@ -1,0 +1,57 @@
+body{
+            position: relative;
+        }
+        .wrapper{
+       		 position:absolute;
+			left:6px;
+			top:11px;
+            height: 1536px;
+            width: 2732px;
+            background: url("../../img/oceanUniversity/bg.jpg") no-repeat;
+        }
+        .exmqy,.xsssqy,.tsgqy,.sllqy{
+            width: 345px;
+            height: 191px;
+            background: url("../../img/oceanUniversity/bg_tip.png");
+        }
+        .exmqy h1,.xsssqy h1,.tsgqy h1,.sllqy h1{
+            font-size: 30px;
+            color: #000000;
+            text-align: center;
+            font-family: "microsoft yahei";
+            font-weight: normal;
+            padding-top: 20px;
+        }
+        .exmqy p ,.xsssqy p,.tsgqy p,.sllqy p{
+            font-size:30px;
+            color: #000000;
+            text-align: center;
+            font-family: "microsoft yahei";
+
+        }
+        .exmqy p span ,.xsssqy p span,.tsgqy p span,.sllqy p span{
+            font-size: 40px;
+
+        }
+
+        .exmqy{
+            position: absolute;
+            top: 55px;
+            left: 574px;
+        }
+        .xsssqy{
+            position: absolute;
+            top: 55px;
+            left: 940px;
+        }
+        .tsgqy{
+           float: right;
+           margin-right: 20px;
+           margin-top: 55px;
+
+        }
+        .sllqy{
+            position: absolute;
+            bottom: 650px;
+            left: 20px;
+        }

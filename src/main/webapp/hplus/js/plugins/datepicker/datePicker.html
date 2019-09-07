@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="">
+<meta name="author" content="">
+<link rel="icon" href="../../favicon.ico">
+<title>SELECT2 USEAGE</title>
+<style type="text/css">
+body {padding-top: 100px;}
+</style>
+<link href="../bootstrap/css/bootstrap.css" rel="stylesheet">
+<link href="./daterangepicker-bs3.css" rel="stylesheet">				<!-- daterangepicker核心css -->
+<script src="../jquery/jquery-1.10.2.js"></script>								<!-- jquery -->
+<script src="../bootstrap/js/bootstrap.js"></script>					<!-- bootstrap核心js -->
+<script src="./moment.min.js"></script>									<!-- 与daterangepucker一起使用的时间辅助类 -->
+<script src="./daterangepicker.js"></script>							<!-- bootstrap核心js -->
+<script src="./customDateRangePicker.js"></script>						<!-- 整合原生daterangepicker 使用api,国际化,取值，赋值 -->
+<script type="text/javascript">
+	$(function(){
+		initDefaultPicker();
+		initDefaultPickerOption();
+		initDefaultPickerOptionSetValue();
+		initDefaultPickerTime();
+	});
+	</script>
+</head>
+<body>
+	<nav class="navbar navbar-inverse navbar-fixed-top">
+		<div class="container">
+			<div class="navbar-header">
+				<button type="button" class="navbar-toggle collapsed"
+					data-toggle="collapse" data-target="#navbar" aria-expanded="false"
+					aria-controls="navbar">
+					<span class="sr-only">Toggle navigation</span> <span
+						class="icon-bar"></span> <span class="icon-bar"></span> <span
+						class="icon-bar"></span>
+				</button>
+				<a class="navbar-brand" href="#">DATE RANGE PICKER</a>
+			</div>
+			<div id="navbar" class="collapse navbar-collapse">
+				<ul class="nav navbar-nav">
+				</ul>
+			</div>
+			<!--/.nav-collapse -->
+		</div>
+	</nav>
+	<div class="container">
+		<div class="row">
+			<pre>
+				接入
+			&lt;link href="./daterangepicker-bs3.css" rel="stylesheet">
+			&lt;script src="./moment.min.js">&lt;/script>
+			&lt;script src="./daterangepicker.js">&lt;/script>			
+			&lt;script src="./customDateRangePicker.js">&lt;/script>	//整理的封装类
+			</pre>
+			<pre>
+			//需要引入customDateRangePicker.js
+				var picker = $("...").buildPicker({
+					single :　true,		//是否是单个控件
+					apply  : function(){	//选择/确认日期事件
+					},
+					cancel : function(){	//取消/清除日期事件
+					}
+					timePicker : true	//是否带时间
+				});
+				//设置开始/结束时间
+				picker.startTime("2016-07-21 10:23:00");
+				picker.endTime("2016-07-21 10:23:00");
+				//获取开始/结束时间
+				var startTime = picker.startTime();
+				var endTime   = picker.endTime();
+			</pre>
+		</div>
+	
+	
+		<div class="row">
+			<h3>无配置属性</h3>
+		</div>
+		<script type="text/javascript">
+			function initDefaultPicker(){
+				var $picker = $('#default-picker');
+				$picker.buildPicker();//无任何配置
+			}
+		</script>
+		<div class="row" style="padding-top: 20px;">
+			<div class="col-md-6">
+				<input class=" form-control" id="default-picker" placeholder="这是一个0属性配置的picker">
+			</div>
+			<div class="col-md-6" id="default-picker-view">
+			</div>
+		</div>
+		<div class="row" style="padding-top: 10px;padding-bottom: 10px;">
+			<pre>
+			function initDefaultPicker(){			
+				var $picker = $('#default-picker');
+				$picker.buildPicker();//无任何配置初始化
+			}
+			&lt;input class=" form-control" id="default-picker" placeholder="这是一个0属性配置的picker">
+			</pre>		
+		</div>
+		<div class="row">
+			<h3>single或者range属性</h3>
+		</div>
+		<script type="text/javascript">
+			function initDefaultPickerOption(){
+				var $pickerOption = $('#default-picker-option');
+				var viewContainerOption = $("#default-picker-view-option");
+				$pickerOption.buildPicker({
+					"single" : true,		//单个控件
+					"apply"  : function(event,picker){
+						viewContainerOption.html("apply事件触发  : " +  $pickerOption.startTime());
+					},
+					"cancel" : function(event,picker){
+						viewContainerOption.html("cancel事件触发");
+					}
+				});
+			}
+		</script>
+		<div class="row" style="padding-top: 20px;">
+			<div class="col-md-6">
+				<input class=" form-control" id="default-picker-option" placeholder="单个控件,带有选择和清除事件">
+			</div>
+			<div class="col-md-6" id="default-picker-view-option">
+			</div>
+		</div>
+		<div class="row" style="padding-top: 10px;padding-bottom: 10px;">
+			<pre>
+			function initDefaultPickerOption(){
+				var $pickerOption = $('#default-picker-option');
+				$pickerOption.buildPicker({
+					"single" : true,		//单个控件
+					"apply"  : function(event,picker){
+						viewContainerOption.html("apply事件触发  : " +  $pickerOption.startTime());
+					},
+					"cancel" : function(event,picker){
+						viewContainerOption.html("cancel事件触发");
+					}
+				});
+			}
+			&lt;input class=" form-control" id="default-picker-option" placeholder="单个控件,带有选择和清除事件">
+			</pre>		
+		</div>
+		<div class="row">
+			<h3>设置初始值</h3>
+		</div>
+		<script type="text/javascript">
+			function initDefaultPickerOptionSetValue(){
+				var $pickerOptionInit = $('#default-picker-option-set-value');
+				var viewContainerOptionInit = $("#default-picker-option-set-value-cn");
+				$pickerOptionInit.buildPicker({
+					"apply"  : function(event,picker){					//取值									//取值
+						viewContainerOptionInit.html("apply事件触发  : " +  $pickerOptionInit.startTime() + " - " + $pickerOptionInit.endTime()) ;
+					},
+					"cancel" : function(event,picker){
+						viewContainerOptionInit.html("cancel事件触发");
+					}
+				});
+				$pickerOptionInit.startTime("2016-07-21");		//设置值(设置值与取值同一个方法名,类似于$("#ABC").val() $("#ABC").val(XXX))
+				$pickerOptionInit.endTime("2016-07-28");		//设置值(设置值与取值同一个方法名,类似于$("#ABC").val() $("#ABC").val(XXX))
+			}
+		</script>
+		<div class="row" style="padding-top: 20px;">
+			<div class="col-md-6">
+				<input class=" form-control" id="default-picker-option-set-value" placeholder="p l a c e h o l d e r">
+			</div>
+			<div class="col-md-6" id="default-picker-option-set-value-cn">
+			</div>
+		</div>
+		<div class="row" style="padding-top: 10px;padding-bottom: 10px;">
+			<pre>
+			function initDefaultPickerOptionSetValue(){
+				var $pickerOptionInit = $('#default-picker-option-set-value');
+				$pickerOptionInit.buildPicker({
+					"apply"  : function(event,picker){					//取值				//取值
+						viewContainerOptionInit.html("apply事件触发  : " +  $pickerOptionInit.startTime() + " - " + $pickerOptionInit.endTime()) ;
+					},
+					"cancel" : function(event,picker){
+						viewContainerOptionInit.html("cancel事件触发");
+					}
+				});
+				$pickerOptionInit.startTime("2016-07-21");		//设置值(设置值与取值同一个方法名,类似于$("#ABC").val() $("#ABC").val(XXX))
+				$pickerOptionInit.endTime("2016-07-28");		//设置值(设置值与取值同一个方法名,类似于$("#ABC").val() $("#ABC").val(XXX))
+			}
+			&lt;input class=" form-control" id="default-picker-option-set-value" placeholder="p l a c e h o l d e r">
+			</pre>		
+		</div>
+		<div class="row">
+			<h3>设置初始值 (带时间)</h3>
+		</div>
+		<script type="text/javascript">
+			function initDefaultPickerTime(){
+				var $pickerOptionTime = $('#default-picker-time');
+				var viewContainerTime = $("#default-picker-time-view");
+				$pickerOptionTime.buildPicker({
+					"timePicker" : true,						//启用时间控价
+					"apply"  : function(event,picker){					//取值									//取值
+						viewContainerTime.html("apply事件触发  : " +  $pickerOptionTime.startTime() + " - " + $pickerOptionTime.endTime()) ;
+					},
+					"cancel" : function(event,picker){
+						viewContainerTime.html("cancel事件触发");
+					}
+				});
+				$pickerOptionTime.startTime("2016-07-21 10:23:00");		//设置值(设置值与取值同一个方法名,类似于$("#ABC").val() $("#ABC").val(XXX))
+				$pickerOptionTime.endTime("2016-07-28 15:31:00");		//设置值(设置值与取值同一个方法名,类似于$("#ABC").val() $("#ABC").val(XXX))
+			}
+		</script>
+		<div class="row" style="padding-top: 20px;">
+			<div class="col-md-6">
+				<input class=" form-control" id="default-picker-time" placeholder="带有时间的picker">
+			</div>
+			<div class="col-md-6" id="default-picker-time-view">
+			
+			</div>
+		</div>
+		<div class="row" style="padding-top: 30px;">
+			如有需要单独的(时间)控件,(日期+时间)控价,推荐timepicker,datetimepicker.
+		</div>
+		<div class="row" style="padding-top: 10px;padding-bottom: 10px;">
+			<pre>
+			function initDefaultPickerTime(){
+				var $pickerOptionTime = $('#default-picker-time');
+				$pickerOptionTime.buildPicker({
+					"timePicker" : true,						//启用时间控价
+					"apply"  : function(event,picker){					//取值				//取值
+						viewContainerTime.html("apply事件触发  : " +  $pickerOptionTime.startTime() + " - " + $pickerOptionTime.endTime()) ;
+					},
+					"cancel" : function(event,picker){
+						viewContainerTime.html("cancel事件触发");
+					}
+				});
+				$pickerOptionTime.startTime("2016-07-21 10:23:00");		//设置值(设置值与取值同一个方法名,类似于$("#ABC").val() $("#ABC").val(XXX))
+				$pickerOptionTime.endTime("2016-07-28 15:31:00");		//设置值(设置值与取值同一个方法名,类似于$("#ABC").val() $("#ABC").val(XXX))
+			}
+			&lt;input class=" form-control" id="default-picker-time" placeholder="带有时间的picker">
+			</pre>		
+		</div>
+	</div>
+	<!-- /.container -->
+</body>
+</html>
