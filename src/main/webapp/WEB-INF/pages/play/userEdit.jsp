@@ -3,21 +3,23 @@
 <html>
 <head>
     <%@ include file="../commons/meta.jsp" %>
-    <title>${commonTitle}- 添加商品配置</title>
+    <title>${commonTitle}- 修改用户信息</title>
 
 
 </head>
 <body class="fixed-sidebar full-height-layout">
 <div id="wrapper">
-    <div id="page-wrapper" class="gray-bg dashbard-1">
+    <%@ include file="../commons/left.jsp"%>
+    <div id="page-wrapper" class="gray-bg dashbard-1" style="margin-left:220px;" >
+        <%@ include file="../commons/top.jsp"%>
         <!-- 业务代码 -->
         <div class="row wrapper border-bottom white-bg page-heading">
             <div class="col-lg-10">
-                <h2>添加邮件配置</h2>
+                <h2>添加用户信息</h2>
                 <ol class="breadcrumb">
                     <li><a href="${ctx}/">主页</a></li>
-                    <li><a>邮件账号管理</a></li>
-                    <li><strong>添加邮件账号</strong></li>
+                    <li><a>用户信息管理</a></li>
+                    <li><strong>添加用户信息</strong></li>
                 </ol>
             </div>
         </div>
@@ -27,69 +29,71 @@
                     <div class="ibox float-e-margins">
 
                         <div class="ibox-title">
-                            <h5>添加邮件账号</h5>
+                            <h5>添加用户信息</h5>
 
                             <div class="ibox-tools">
-                                <a href="${ctx}/mailAccount/list" class="btn btn-primary btn-xs">返回列表</a>
+                                <a href="${ctx}/playUser/list" class="btn btn-primary btn-xs">返回列表</a>
                             </div>
                         </div>
                         <div class="ibox-content">
 
-                            <form class="form-horizontal m-t" id="mailAccountContainer" method="post" action="#">
-                                <input type="hidden" name="id" value="${mailAccount.id}"/>
+                            <form class="form-horizontal m-t" id="playUserContainer" method="post" action="#">
+                                <input type="hidden" name="userid" value="${pUser.userid}"/>
                                 <div class="form-group">
-                                    <label class="col-sm-3 control-label">渠道：</label>
+                                    <label class="col-sm-3 control-label">姓名：</label>
 
                                     <div class="col-sm-4">
-                                        <input id="channelName" name="channelName" class="form-control" type="text" value="${mailAccount.channelName}"/>
+                                        <input id="name" name="name" class="form-control" type="text" value="${pUser.name}"/>
                                     </div>
                                 </div>
                                 <div class="form-group">
-                                    <label class="col-sm-3 control-label">用户名：</label>
+                                    <label class="col-sm-3 control-label">性别：</label>
 
                                     <div class="col-sm-4">
-                                        <input id="username" name="username" class="form-control" type="text" value="${mailAccount.username}"/>
+                                        <select id='sex' name='sex' class='chosen-select col-sm-12' >
+                                            <option value="1" <c:if test='${pUser.sex eq "1"}'>selected</c:if>>男孩</option>
+                                            <option value="0" <c:if test='${pUser.sex eq "0"}'>selected</c:if>>女孩</option>
+                                        </select>
                                     </div>
                                 </div>
                                 <div class="form-group">
-                                    <label class="col-sm-3 control-label">密码：</label>
+                                    <label class="col-sm-3 control-label">年龄：</label>
                                     <div class="col-sm-4">
-                                        <input id="password" name="password" class="form-control" type="text"  value="${mailAccount.password}"/>
+                                        <input id="age" name="age" class="form-control" type="text" value="${pUser.age}"/>
                                     </div>
                                 </div>
                                 <div class="form-group">
-                                    <label class="col-sm-3 control-label">服务地址：</label>
-                                    <div class="col-sm-4">
-                                        <input id="sendHost" name="sendHost" class="form-control" type="text"  value="${mailAccount.sendHost}"/>
-                                    </div>
-                                </div>
-                                <div class="form-group">
-                                    <label class="col-sm-3 control-label">端口：</label>
-                                    <div class="col-sm-4">
-                                        <input id="sendPort" name="sendPort" class="form-control" type="text" value="${mailAccount.sendPort}"/>
-                                    </div>
-                                </div>
-                                <div class="form-group">
-                                    <label class="col-sm-3 control-label">协议：</label>
-                                    <div class="col-sm-4">
-                                        <input id="protocol" name="protocol" class="form-control" type="text" value="${mailAccount.protocol}"/>
-                                    </div>
-                                </div>
-                                <div class="form-group">
-                                    <label class="col-sm-3 control-label">类型：</label>
-                                    <div class="col-sm-4">
-                                        <input id="sendType" name="sendType" class="form-control" type="text" style="margin-top: 10px;" value="${mailAccount.sendType}"/>
-                                    </div>
-                                </div>
-                            </form>
+                                    <label class="col-sm-3 control-label">电话：</label>
 
-                            <form class="form-horizontal m-t" id="addForm" method="post" action="#">
+                                    <div class="col-sm-4">
+                                        <input id="phone" name="phone" class="form-control" type="text" value="${pUser.phone}"/>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-sm-3 control-label">出生日期：</label>
+
+                                    <div class="col-sm-4">
+                                        <input class="form-control layer-date" id="birthday" name="birthday" placeholder="出生日期"
+                                               value="${pUser.birthday}"
+                                               onclick="laydate({istime: true, format: 'YYYY-MM-DD'})">
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-sm-3 control-label">剩余金额：</label>
+                                    <div class="col-sm-4">
+                                        <input id="remainAmount" name="remainAmount" class="form-control" type="text" value="${pUser.remainAmount}"/>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-sm-3 control-label">描述：</label>
+                                    <div class="col-sm-4">
+                                        <input id="memo" name="memo" class="form-control" type="text" value="${pUser.memo}"/>
+                                    </div>
+                                </div>
                                 <div class="form-group">
                                     <div class="col-sm-4 col-sm-offset-3">
                                         <button class="btn btn-default" type="reset">重置</button>
-                                        <button type="button" class="btn btn-primary" data-toggle="modal"  data-target="#exampleModal"  data-whatever="@mdo">保存</button>
-                                        <span id="notify-error" class="notify-error" style="display: block;float: right;margin-right: 200px;color: red;"></span>
-
+                                        <button class="btn btn-primary" type="submit">更新</button>
                                     </div>
                                 </div>
                             </form>
@@ -126,7 +130,7 @@
 <!-- jQuery Validation plugin javascript-->
 <%@ include file="../commons/validate.jsp" %>
 <script src="${ctx}/hplus/js/plugins/layer/laydate/laydate.js"></script>
-<script src="${ctx}/hplus/js/mgr/tcpush/validate.js?v=1"></script>
-<script src="${ctx}/hplus/js/mgr/tcpush/mailAccount/configEdit.validate.js?v=1"></script>
+<script src="${ctx}/hplus/js/play/validate.js"></script>
+<script src="${ctx}/hplus/js/play/playEdit.validate.js"></script>
 </body>
 </html>

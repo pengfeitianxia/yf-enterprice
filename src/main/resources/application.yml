@@ -1,7 +1,7 @@
 
 spring:
   datasource:
-    url: jdbc:mysql://localhost:3306/yf-enterprise
+    url: jdbc:mysql://localhost:3306/yf-enterprise?useUnicode=true&characterEncoding=UTF-8&zeroDateTimeBehavior=convertToNull&useSSL=false
     username: root
     password: root
     driver-class-name: com.mysql.jdbc.Driver
@@ -15,6 +15,5 @@ logging:
   config: classpath:logback.xml
   level:
     org.mybatis: debug
-    java.sql: debug
     org.springframework.web: trace
 

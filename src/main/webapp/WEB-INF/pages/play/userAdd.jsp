@@ -46,15 +46,33 @@
                                     </div>
                                 </div>
                                 <div class="form-group">
+                                    <label class="col-sm-3 control-label">性别：</label>
+
+                                    <div class="col-sm-4">
+                                        <select id='sex' name='sex' class='chosen-select col-sm-12' >
+                                                <option value="1" selected>男孩</option>
+                                                <option value="0">女孩</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="form-group">
                                     <label class="col-sm-3 control-label">年龄：</label>
                                     <div class="col-sm-4">
                                         <input id="age" name="age" class="form-control" type="text"/>
                                     </div>
                                 </div>
                                 <div class="form-group">
-                                    <label class="col-sm-3 control-label">生日：</label>
+                                    <label class="col-sm-3 control-label">电话：</label>
+
                                     <div class="col-sm-4">
-                                        <input id="birthday" name="birthday" class="form-control" type="text"/>
+                                        <input id="phone" name="phone" class="form-control" type="text"/>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-sm-3 control-label">出生日期：</label>
+
+                                    <div class="col-sm-4">
+                                        <input class="form-control layer-date" id="birthday" name="birthday" placeholder="出生日期" onclick="laydate({istime: true, format: 'YYYY-MM-DD'})">
                                     </div>
                                 </div>
                                 <div class="form-group">
@@ -69,15 +87,10 @@
                                         <input id="memo" name="memo" class="form-control" type="text"/>
                                     </div>
                                 </div>
-                            </form>
-
-                            <form class="form-horizontal m-t" id="addForm" method="post" action="#">
                                 <div class="form-group">
                                     <div class="col-sm-4 col-sm-offset-3">
                                         <button class="btn btn-default" type="reset">重置</button>
-                                        <button type="button" class="btn btn-primary" data-toggle="modal"  data-target="#exampleModal"  data-whatever="@mdo">保存</button>
-                                        <span id="notify-error" class="notify-error" style="display: block;float: right;margin-right: 200px;color: red;"></span>
-
+                                        <button class="btn btn-primary" type="submit">添加</button>
                                     </div>
                                 </div>
                             </form>
@@ -90,32 +103,10 @@
         <%@ include file="../commons/footer.jsp"%>
     </div>
 </div>
-<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel">
-    <div class="modal-dialog" role="document">
-        <div class="modal-content">
-            <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
-                <h4 class="modal-title" id="exampleModalLabel">确认框</h4>
-            </div>
-            <div class="modal-body">
-                <form>
-                    <div class="form-group">
-                        <label for="message-text" class="control-label">是否确认要保存数据？</label>
-                    </div>
-                </form>
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-default" data-dismiss="modal">返回</button>
-                <button type="button" class="btn btn-primary" data-dismiss="modal" onclick=" submit()">确认</button>
-            </div>
-
-        </div>
-    </div>
-</div>
 <!-- jQuery Validation plugin javascript-->
 <%@ include file="../commons/validate.jsp" %>
 <script src="${ctx}/hplus/js/plugins/layer/laydate/laydate.js"></script>
-<script src="${ctx}/hplus/js/validate.js"></script>
+<script src="${ctx}/hplus/js/play/validate.js"></script>
 <script src="${ctx}/hplus/js/play/playAdd.validate.js"></script>
 
 </body>

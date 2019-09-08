@@ -7,10 +7,13 @@
     -->
     <id column="userId" jdbcType="VARCHAR" property="userid" />
     <result column="name" jdbcType="VARCHAR" property="name" />
+    <result column="phone" jdbcType="VARCHAR" property="phone" />
     <result column="age" jdbcType="INTEGER" property="age" />
     <result column="sex" jdbcType="CHAR" property="sex" />
-    <result column="birthday" jdbcType="TIMESTAMP" property="birthday" />
+    <result column="birthday" jdbcType="VARCHAR" property="birthday" />
     <result column="remain_amount" jdbcType="DECIMAL" property="remainAmount" />
+    <result column="memo" jdbcType="VARCHAR" property="memo" />
+    <result column="modify_time" jdbcType="TIMESTAMP" property="modifyTime" />
     <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
   </resultMap>
 </mapper>

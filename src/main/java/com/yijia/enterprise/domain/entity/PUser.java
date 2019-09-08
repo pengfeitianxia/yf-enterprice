@@ -1,5 +1,6 @@
 package com.yijia.enterprise.domain.entity;
 
+import java.io.Serializable;
 import java.math.BigDecimal;
 import java.util.Date;
 import javax.persistence.*;
@@ -11,12 +12,14 @@ import lombok.ToString;
 @Setter
 @ToString
 @Table(name = "p_user")
-public class PUser {
+public class PUser implements Serializable {
     @Id
     @Column(name = "userId")
     private String userid;
 
     private String name;
+
+    private String phone;
 
     private Integer age;
 
@@ -25,7 +28,7 @@ public class PUser {
      */
     private String sex;
 
-    private Date birthday;
+    private String birthday;
 
     /**
      * 剩余金额
@@ -33,6 +36,13 @@ public class PUser {
     @Column(name = "remain_amount")
     private BigDecimal remainAmount;
 
+    private String memo;
+
+    @Column(name = "modify_time")
+    private Date modifyTime;
+
     @Column(name = "create_time")
     private Date createTime;
+
+    private static final long serialVersionUID = 1L;
 }

@@ -8,7 +8,7 @@
     <context id="Mysql" targetRuntime="MyBatis3Simple" defaultModelType="flat">
         <property name="beginningDelimiter" value="`"/>
         <property name="endingDelimiter" value="`"/>
-
+        <plugin type="org.mybatis.generator.plugins.SerializablePlugin" />
         <plugin type="tk.mybatis.mapper.generator.MapperPlugin">
             <property name="mappers" value="tk.mybatis.mapper.common.Mapper"/>
             <property name="caseSensitive" value="true"/>
@@ -16,7 +16,7 @@
         </plugin>
 
         <jdbcConnection driverClass="com.mysql.jdbc.Driver"
-                        connectionURL="jdbc:mysql://127.0.0.1:3306/yf_enterprise?serverTimezone=GMT"
+                        connectionURL="jdbc:mysql://127.0.0.1:3306/yf-enterprise?serverTimezone=GMT"
                         userId="root"
                         password="root">
         </jdbcConnection>
@@ -36,9 +36,6 @@
 
         <!--为哪张表生成代码-->
         <table tableName="bk_book_info"></table>
-        <table tableName="bk_book_info_history"></table>
-        <table tableName="bk_userandbook"></table>
-        <table tableName="bk_user"></table>
         <table tableName="p_consumption_record"></table>
         <table tableName="p_recharge"></table>
         <table tableName="p_set_consumption_amount"></table>

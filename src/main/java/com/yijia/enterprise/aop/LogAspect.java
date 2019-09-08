@@ -50,10 +50,8 @@ public class LogAspect {
         try {
             watch.start();
             setMdc();
-            printParam(point, true);
 
             Object result = point.proceed();
-            printResult(point, true, result);
             return result;
         } finally {
             watch.stop();
@@ -62,34 +60,7 @@ public class LogAspect {
         }
     }
 
-    /*打印输入参数*/
-    private void printParam(ProceedingJoinPoint point, Boolean printParams) {
-        try {
-            if (null == printParams || !printParams) {
-                log.info("目标方法:{}", StringUtil.append(point.getSignature().getDeclaringTypeName(), ".", point.getSignature().getName()));
-                return;
-            }
-            Map<String, Object> params = getParam(point);
-            log.info("目标方法:{};输入参数:{}", StringUtil.append(point.getSignature().getDeclaringTypeName(), ".", point.getSignature().getName()), JsonUtil.objectToJson(params));
-        } catch (Exception e) {
-            log.error("获取参数错误,错误信息:{}", e.getMessage());
-        }
-    }
 
-    private void printResult(ProceedingJoinPoint point, Boolean printResult, Object result) {
-        if (null == printResult) {
-            return;
-        }
-        if (!printResult) {
-            return;
-        }
-        Class returnType = ((MethodSignature) point.getSignature()).getReturnType();
-        if (StringUtil.equals(returnType.getName(), "void")) {
-            return;
-        }
-        log.info("返回结果:{}", JsonUtil.objectToJson(result));
-
-    }
 
     /**
      * 获取客户端参数

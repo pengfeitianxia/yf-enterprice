@@ -4,6 +4,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.EnableAspectJAutoProxy;
+import org.springframework.context.annotation.PropertySource;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.Mapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -12,6 +13,7 @@ import tk.mybatis.spring.annotation.MapperScan;
 @MapperScan("com.yijia")
 @SpringBootApplication
 @Slf4j
+@PropertySource( value = "classpath:yfEnterprice.properties")
 @EnableAspectJAutoProxy(proxyTargetClass = true, exposeProxy = true)
 public class YfEnterpriseApplication {
 

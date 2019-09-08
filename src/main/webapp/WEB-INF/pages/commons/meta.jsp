@@ -79,7 +79,7 @@
 
 <!-- bootstrap-datetimepicker -->
 <script src="${ctx}/hplus/js/plugins/bootstrap-datetimepicker/bootstrap-datetimepicker.min.js"></script>
-<script src="${ctx}/hplus/js/mgr/common.js"></script>
+<script src="${ctx}/hplus/js/common.js"></script>
 <script src="${ctx}/hplus/js/plugins/blockui/jquery.blockUI.js"></script>
 <script src="${ctx}/hplus/js/plugins/spinner/jquery.spinner.min.js"></script>
 <script type="text/javascript">

@@ -1,18 +1,18 @@
 function submit() {
-    if (!validate()) {
-        return;
-    }
-    var mailAccount = $('#mailAccountContainer').serializeJson();
+    showBlock();
+    var playUser = $('#playUserContainer').serializeJson();
     $.ajax({
-        url: ctx + '/mailAccount/add',
+        url: ctx + '/playUser/add',
         type: 'post',
         dataType: 'json',
         timeout: ajaxTimeout,
-        data: mailAccount,
+        data: playUser,
         error: function () {
+            hideBlock();
             toastr.error("添加失败");
         },
         success: function (json) {
+            hideBlock();
             if (json.isSuccess) {
                 toastr.success(json.msg);
             } else {

@@ -3,15 +3,15 @@
 
  Source Server         : localhost
  Source Server Type    : MySQL
- Source Server Version : 80017
+ Source Server Version : 50727
  Source Host           : 127.0.0.1:3306
- Source Schema         : yf_enterprise
+ Source Schema         : yf-enterprise
 
  Target Server Type    : MySQL
- Target Server Version : 80017
+ Target Server Version : 50727
  File Encoding         : 65001
 
- Date: 08/09/2019 12:07:36
+ Date: 08/09/2019 19:30:05
 */
 
 SET NAMES utf8mb4;
@@ -85,9 +85,10 @@ DROP TABLE IF EXISTS `p_user`;
 CREATE TABLE `p_user` (
   `userId` varchar(32) NOT NULL,
   `name` varchar(50) NOT NULL,
+  `phone` varchar(11) DEFAULT NULL,
   `age` int(11) DEFAULT NULL,
   `sex` char(2) DEFAULT '0' COMMENT '0 女  1男',
-  `birthday` datetime DEFAULT NULL,
+  `birthday` varchar(20) DEFAULT NULL,
   `remain_amount` decimal(18,2) DEFAULT NULL COMMENT '剩余金额',
   `memo` varchar(100) DEFAULT NULL,
   `modify_time` datetime DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,

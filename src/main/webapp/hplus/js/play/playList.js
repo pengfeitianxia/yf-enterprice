@@ -1,60 +1,56 @@
 var table;
 $(function () {
-    $("#activityType.chosen-select").chosen();
-    $("#state.chosen-select").chosen();
     //表格
     table = $('#dataList').dataTable({
         "fnServerData": function (sSource, aoData, fnCallback) {
             $.ajax({
                 "dataType": 'json',
                 "type": "POST",
-                "url": ctx + "/mailAccount/ajaxList",
+                "url": ctx + "/playUser/ajaxList",
                 "data": {
                     "draw": aoData.draw,
                     "currentResult": aoData.start,
                     "showCount": aoData.length,
+                    "name" : $("#name").val(),
+                    "phone" : $("#phone").val()
                 },
                 "success": fnCallback
             });
         },
         "aoColumns": [
-            {"data": "id"},
-            {"data": "channelName"},
-            {"data": "username"},
-            {"data": "password"},
-            {"data": "sendHost"},
-            {"data": "sendPort"},
-            {"data": "protocol"},
-            {"data": "id"}
+            {"data": "userid"},
+            {"data": "name"},
+            {"data": "age"},
+            {"data": "phone"},
+            {"data": "birthday"},
+            {"data": "remainAmount"},
+            {"data": "userid"}
         ],
         "fnRowCallback": function (nRow, aData, iDisplayIndex) {
             $('td:eq(0)', nRow).html(iDisplayIndex + 1);
-            if (aData.channelName) {
-                $('td:eq(1)', nRow).html(aData.channelName);
+            if (aData.name) {
+                $('td:eq(1)', nRow).html(aData.name);
             }
-            if (aData.username) {
-                $('td:eq(2)', nRow).html(aData.username);
+            if (aData.age) {
+                $('td:eq(2)', nRow).html(aData.age);
             }
-            if (aData.remaining) {
-                $('td:eq(3)', nRow).html(aData.password);
+            if (aData.phone) {
+                $('td:eq(3)', nRow).html(aData.phone);
             }
-            if (aData.sendHost) {
-                $('td:eq(4)', nRow).html(aData.sendHost);
+            if (aData.birthday) {
+                $('td:eq(4)', nRow).html(aData.birthday);
             }
-            if (aData.sendPort) {
-                $('td:eq(5)', nRow).html(aData.sendPort);
+            if (aData.remainAmount) {
+                $('td:eq(5)', nRow).html(aData.remainAmount);
             }
-            if (aData.protocol) {
-                $('td:eq(6)', nRow).html(aData.protocol);
-            }
-            $('td:eq(7)', nRow).html(operateHtml(aData));
+            $('td:eq(6)', nRow).html(operateHtml(aData));
         }
     });
 
     /**
      * 搜索
      */
-    $('#serach').click(function () {
+    $('#search').click(function () {
         table.fnDraw();
     });
 });
@@ -66,11 +62,41 @@ function operateHtml(aData) {
     if (aData.auFunctreeId == '-1' || aData.auFunctreeId == '0') {
         return "";
     }
-    var operateHtml = '<a href="' + ctx + '/mailAccount/editUI?id=' + aData.id + '"><i class="fa text-navy">编辑</i></a>';
-        operateHtml += '&nbsp;&nbsp;<a href="#" onclick="delete_(\'' + aData.id + '\',\'1\')"><i class="fa text-navy">删除</i></a>';
+    var operateHtml = '<a href="' + ctx + '/playUser/editUI?id=' + aData.userid + '"><i class="fa text-navy">编辑</i></a>';
+        operateHtml += '&nbsp;&nbsp;<a href="#" onclick="delete_(\'' + aData.userid + '\',\'1\')"><i class="fa text-navy">删除</i></a>';
+        operateHtml += '&nbsp;&nbsp;<a href="#" onclick="consume_(\'' + aData.userid + '\', \'' + aData.name + '\',\'1\')"><i class="fa text-navy">消费</i></a>';
     return operateHtml;
 }
 
+/**
+ * 消费一次
+ */
+function consume_(id,name){
+    var confirmStr = "将要在用户" +name+"扣除5元";
+    if (!window.confirm(confirmStr)) {
+        return;
+    }
+    $.ajax({
+        url: ctx + "/playUser/consumption",
+        type: 'post',
+        data: {
+            "userId": id
+        },
+        dataType: 'json',
+        timeout: ajaxTimeout,
+        error: function () {
+            toastr.error("扣除失败")
+        },
+        success: function (json) {
+            if (json.isSuccess) {
+                toastr.success(json.msg)
+            } else {
+                toastr.error(json.msg)
+            }
+            table.fnPageChange(getPageNum(table, false));
+        }
+    });
+}
 
 /**
  * 修改状态
@@ -82,15 +108,15 @@ function delete_(id) {
     }
 
     $.ajax({
-        url: ctx + "/mailAccount/delete",
+        url: ctx + "/playUser/delete",
         type: 'post',
         data: {
-            "id": id
+            "userId": id
         },
         dataType: 'json',
         timeout: ajaxTimeout,
         error: function () {
-            toastr.error("修改失败")
+            toastr.error("删除")
         },
         success: function (json) {
             if (json.isSuccess) {
